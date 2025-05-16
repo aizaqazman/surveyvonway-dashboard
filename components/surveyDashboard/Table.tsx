@@ -158,41 +158,58 @@ export default function Table({ data }: Props) {
         row: ReviewRow,
         status: 'approved' | 'rejected' | 'not checked'
     ) => {
-        if (status === 'approved' || status === 'not checked') {
-            const confirmed = window.confirm(`Are you sure you want to delete ${row.name}?`);
+
+        const rowsToDelete = selectedRows.length > 0
+            ? tableData.filter(r =>selectedRows.includes(r.id))
+            : [row];
+
+        const confirmation = rowsToDelete.some(r =>
+            status === 'approved' || status === 'not checked'
+        );
+        if(confirmation) {
+            const confirmed = window.confirm("Some users are approved or not checked. Are you sure you want to delete the selected user(s)?"); 
             if (!confirmed) return;
         }
 
+        // Set loading state
+        const loadingMap: { [id: number]: boolean } = {};
+        rowsToDelete.forEach(r => {
+            loadingMap[r.id] = true;
+        }); 
         setLoadingDeletes(prev => ({ 
-            ...prev, [row.id]: true 
+            ...prev, ...loadingMap
         }));
 
         try {
-            const result = await deleteUserDatabase({
-                name: row.name,
-                email: row.email,
-                clientId: row.client_id,
-                id: row.id
-            });
-            console.log(result);
+            for (const r of rowsToDelete) {
+                const result = await deleteUserDatabase({
+                    name: r.name,
+                    email: r.email,
+                    clientId: r.client_id,
+                    id: r.id
+                });
+                
+                console.log(result);
 
-            if (result.success === true) {
-                setTableData(prev => prev.filter(item => item.id !== row.id));
-                alert("Success deleting user.")
-            } else {
-                alert("Failed to delete: " + result.message)
+                if (result.success === true) {
+                    setTableData(prev => prev.filter(item => item.id !== r.id));
+                    alert("Success deleting user.")
+                } else {
+                    alert("Failed to delete: " + result.message)
+                }
             }
+
         } catch (error) {
             console.error("Delete error: ", error);
             alert("Error deleting user.");
         } finally {
-            setLoadingDeletes(prev => ({ ...prev, [row.id]: false }));
+            const resetMap: { [id: number]: boolean } = {};
+            rowsToDelete.forEach(r => {
+                resetMap[r.id] = false;
+            });
+            setLoadingDeletes(prev => ({ ...prev, ...resetMap }));
+            setSelectedRows([]); 
         }
-    };
-    
-    const handleUpload = (rows: ReviewRow[]) => {
-        setUploadedRows(rows); // only store the uploaded content
-        setMergedRows(null);   // reset any previous merge
     };
 
     const handleSave = () => {
@@ -337,7 +354,7 @@ export default function Table({ data }: Props) {
                                     setSelectedRows(ids);
                                 } else if (value === 'untick') {
                                     setSelectedRows([]);
-                                }
+                                } 
                                 }}
                             >
                                 <option value="">-- Select --</option>
