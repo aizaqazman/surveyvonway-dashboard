@@ -164,7 +164,7 @@ export default function Table({ data }: Props) {
             : [row];
 
         const confirmation = rowsToDelete.some(r =>
-            status === 'approved' || status === 'not checked'
+            r.form_status === 'approved' || r.form_status === 'not checked'
         );
         if(confirmation) {
             const confirmed = window.confirm("Some users are approved or not checked. Are you sure you want to delete the selected user(s)?"); 
