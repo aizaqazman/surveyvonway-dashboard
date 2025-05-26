@@ -1,6 +1,8 @@
+export const dynamic = 'force-dynamic';
+
 import React, { Suspense } from 'react';
 import { fetchReview } from '@/app/lib/db';
-import Table from '@/components/surveyDashboard/Table';
+import Table from '@/components/Table';
 
 export default async function surveyDashboard() {
     const datas = await fetchReview();

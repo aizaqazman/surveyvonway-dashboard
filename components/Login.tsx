@@ -2,7 +2,7 @@
 
 import { LoginUser } from '@/app/lib/login';
 import React, {useActionState} from 'react'
-import Loader from '../loader/Loader';
+import Loader from './loader/Loader';
 
 export default function Login() {
     const [data, formAction, isPending] = useActionState( LoginUser, undefined)

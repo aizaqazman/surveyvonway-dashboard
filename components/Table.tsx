@@ -1,20 +1,20 @@
 'use client';
 
 import React, { useState, useTransition } from 'react';
-import { ReviewRow } from '../types';
-import ZoomableImage from '../zoom-image/ZoomableImage';
+import { ReviewRow } from './types';
+import ZoomableImage from './ZoomableImage';
 import timestamps from '@/app/lib/timestamps';
-import DownloadButton from '../downloadXlsx/Download-xlsx';
-import Calendar from '../calendar/Calendar';
+import DownloadButton from './Download-xlsx';
+import Calendar from './Calendar';
 import rejected from '@/app/lib/rejected';
 import approved from '@/app/lib/approved';
-import Loader from '../loader/Loader';
+import Loader from './loader/Loader';
 import actionFormStatus from '@/app/lib/actionformstatus';
-import Search from '../search/Search';
+import Search from './Search';
 import { filterData } from '@/app/lib/filterdata';
 import { useSearchParams } from 'next/navigation';
 import { deleteUserDatabase } from '@/app/lib/deleteuser';
-import ExcelUpload from '../uploadFile/ExcelUpload';
+import ExcelUpload from './ExcelUpload';
 import { mergeData } from '@/app/lib/mergedata';
 import { saveToDb } from '@/app/lib/saveToDb';
 

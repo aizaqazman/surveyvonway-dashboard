@@ -2,7 +2,7 @@
 
 import React, { useTransition } from 'react';
 import { exportExcel } from '@/app/lib/xlsx';
-import { ReviewRow } from '../types';
+import { ReviewRow } from './types';
 
 interface Props {
     data: ReviewRow[]; 

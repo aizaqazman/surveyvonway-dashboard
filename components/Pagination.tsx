@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { ReviewRow } from '../types';
+import { ReviewRow } from './types';
 
 interface Props {
     data: ReviewRow[];

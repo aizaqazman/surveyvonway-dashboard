@@ -1,5 +1,3 @@
-
-
 function timestamps(time: string) {
     return new Date(time).toLocaleString('en-GB', {
         year: 'numeric',

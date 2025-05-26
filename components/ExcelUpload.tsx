@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import ExcelJS from 'exceljs';
-import { ReviewRow } from "../types";
+import { ReviewRow } from "./types";
 
 interface Props {
     onParsed: (rows: ReviewRow[]) => void;
