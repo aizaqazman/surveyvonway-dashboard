@@ -1,4 +1,3 @@
-import Link from "next/link";
 import NavLinks from "./Nav-links";
 import { logOut } from "@/app/lib/logout";
 import Image from "next/image";
