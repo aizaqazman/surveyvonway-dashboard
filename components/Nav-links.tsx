@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { ShieldCheckIcon, TicketPercent } from "lucide-react";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -21,6 +22,16 @@ const links = [
     name: "Survey table",
     href: "/dashboard/survey-dashboard",
     icon: DocumentDuplicateIcon,
+  },
+  {
+    name: "Promo code",
+    href: "/dashboard/promo-code",
+    icon: TicketPercent,
+  },
+  {
+    name: "Admin",
+    href: "/dashboard/admin",
+    icon: ShieldCheckIcon,
   },
 ];
 

@@ -49,7 +49,7 @@ export default function ExcelUpload({ onParsed }: Props) {
   };
 
   return (
-    <div className="p-4 border rounded bg-white shadow-sm">
+    <div className="p-4 rounded">
       {/* Upload Button */}
       <button
         onClick={() => fileInputRef.current?.click()}
