@@ -1,22 +1,22 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { ReviewRow } from "./types";
-import ZoomableImage from "./ZoomableImage";
-import timestamps from "@/app/lib/timestamps";
+import { ReviewRow } from "../types";
+import ZoomableImage from "../ZoomableImage";
+import timestamps from "@/app/lib/survey/timestamps";
 import DownloadButton from "./Download-xlsx";
 import Calendar from "./Calendar";
-import rejected from "@/app/lib/rejected";
-import approved from "@/app/lib/approved";
-import Loader from "./loader/Loader";
-import actionFormStatus from "@/app/lib/actionformstatus";
+import rejected from "@/app/lib/survey/rejected";
+import approved from "@/app/lib/survey/approved";
+import Loader from "../loader/Loader";
+import actionFormStatus from "@/app/lib/survey/actionformstatus";
 import Search from "./Search";
-import { filterData } from "@/app/lib/filterdata";
+import { filterData } from "@/app/lib/survey/filterdata";
 import { useSearchParams } from "next/navigation";
-import { deleteUserDatabase } from "@/app/lib/deleteuser";
+import { deleteUserDatabase } from "@/app/lib/survey/deleteuser";
 import ExcelUpload from "./ExcelUpload";
-import { mergeData } from "@/app/lib/mergedata";
-import { saveToDb } from "@/app/lib/saveToDb";
+import { mergeData } from "@/app/lib/survey/mergedata";
+import { saveToDb } from "@/app/lib/survey/saveToDb";
 
 interface Props {
   data: ReviewRow[];

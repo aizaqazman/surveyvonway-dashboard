@@ -13,7 +13,7 @@ export interface ReviewRow {
 
 export interface LoginRequest {
   email: string;
-  password: string; 
+  password: string;
   isAdmin: boolean;
 }
 
@@ -35,3 +35,15 @@ export const sessionOptions: SessionOptions = {
 export const defaultSession: SessionData = {
   isLoggedIn: false,
 };
+
+export interface PromoRow {
+  id: number;
+  email: string;
+  client_id: string;
+  eligible: boolean;
+  total_amount: string;
+  status: string;
+  promo_code: string;
+  submitted_at: Date;
+  claim_month: Date;
+}

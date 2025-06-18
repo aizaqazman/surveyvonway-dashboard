@@ -1,7 +1,7 @@
 // app/dashboard/page.tsx
-import { getUserCount } from "../lib/user-stats";
-import { getUserApproved } from "../lib/user-stats";
-import { getUserRejected } from "../lib/user-stats";
+import { getUserCount } from "../lib/survey/user-stats";
+import { getUserApproved } from "../lib/survey/user-stats";
+import { getUserRejected } from "../lib/survey/user-stats";
 
 export default async function DashboardPage() {
   const userCount = await getUserCount();
