@@ -30,6 +30,7 @@ export default function TablePromo({
 }: TablePromoProps) {
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedEligible, setSelectedEligible] = useState<string>("");
 
   // Extract distinct years
   const years: number[] = Array.from(
@@ -45,7 +46,13 @@ export default function TablePromo({
     const matchesYear = selectedYear
       ? date.getFullYear() === Number(selectedYear)
       : true;
-    return matchesMonth && matchesYear;
+    const matchesEligibility =
+      selectedEligible === "yes"
+        ? item.eligible === true
+        : selectedEligible === "no"
+        ? item.eligible === false
+        : true;
+    return matchesMonth && matchesYear && matchesEligibility;
   });
 
   const handleDelete = async (id: number) => {
@@ -90,6 +97,16 @@ export default function TablePromo({
               {year}
             </option>
           ))}
+        </select>
+
+        <select
+          value={selectedEligible}
+          onChange={(e) => setSelectedEligible(e.target.value)}
+          className="border px-3 py-2 rounded"
+        >
+          <option value="">All Eligibility</option>
+          <option value="yes">Eligible</option>
+          <option value="no">Not Eligible</option>
         </select>
       </div>
 

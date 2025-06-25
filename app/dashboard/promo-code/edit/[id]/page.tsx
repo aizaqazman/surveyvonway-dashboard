@@ -49,7 +49,7 @@ export default function EditPromoPage() {
   if (loading) return <p className="p-4">Loading promo data...</p>;
 
   return (
-    <div className="max-w-xl mx-auto p-6">
+    <div className="max-w-xl mx-auto p-6 border-2 mt-20">
       <h1 className="text-2xl font-semibold mb-6">Edit Promo Client</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
