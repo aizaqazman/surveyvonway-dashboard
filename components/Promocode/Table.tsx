@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { deletePromo } from "@/app/lib/promo/actionpromo";
 import Link from "next/link";
+import SearchPromo from "./SearchPromo";
 
 // Define the shape of a redemption record
 interface Redemption {
@@ -71,8 +72,12 @@ export default function TablePromo({
 
   return (
     <div className="w-full">
-      {/* Filters month and year */}
       <div className="flex flex-wrap gap-4 mb-6 mt-4">
+        {/* search clientId or email */}
+        <div className="min-w-1/4">
+          <SearchPromo placeholder="Search emails or client IDs..." />
+        </div>
+        {/* filter by month */}
         <select
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
@@ -85,7 +90,7 @@ export default function TablePromo({
             </option>
           ))}
         </select>
-
+        {/* filter by year */}
         <select
           value={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
@@ -98,7 +103,7 @@ export default function TablePromo({
             </option>
           ))}
         </select>
-
+        {/* filter by eligible */}
         <select
           value={selectedEligible}
           onChange={(e) => setSelectedEligible(e.target.value)}
@@ -109,7 +114,6 @@ export default function TablePromo({
           <option value="no">Not Eligible</option>
         </select>
       </div>
-
       {/* Table */}
       <h1 className="mb-8 text-xl md:text-xl mt-8">Promo Code Redemptions</h1>
       <div className="mt-6 flow-root">
