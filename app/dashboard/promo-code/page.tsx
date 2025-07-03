@@ -1,5 +1,5 @@
 import Pagination from '@/components/Promocode/Pagination';
-// import SearchPromo from '@/components/Promocode/SearchPromo';
+import SearchPromo from '@/components/Promocode/SearchPromo';
 import { fetchPromoClients } from '@/app/lib/db';
 import React, { Suspense } from 'react'
 import TablePromo from '@/components/Promocode/Table';
@@ -32,9 +32,9 @@ export default async function PromoPage(props: {
       <div className="flex w-full items-center justify-between">
         <h1 className="text-2xl">Promo Menu</h1>
       </div>
-      {/* <div className="mt-2 w-1/4 flex items-center justify-between gap-2 md:mt-2">
+      <div className="mt-2 w-1/4 flex items-center justify-between gap-2 md:mt-2">
         <SearchPromo placeholder="Search emails or client IDs..." />
-      </div> */}
+      </div>
       <Suspense key={query + currentPage}>
         <TablePromo redemptions={paginatedData} currentPage={currentPage} itemsPerPage={itemsPerPage} />
       </Suspense>
