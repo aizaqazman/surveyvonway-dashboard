@@ -74,7 +74,7 @@ export default function TablePromo({
     <div className="w-full">
       <div className="flex flex-wrap gap-4 mb-6 mt-4">
         <div className="mt-2 w-1/4 flex items-center justify-between gap-2 md:mt-2">
-          <SearchPromo placeholder="Search emails or client IDs...and hit Enter" />
+          <SearchPromo placeholder="Search emails or client IDs..." />
         </div>
         {/* filter by month */}
         <select
