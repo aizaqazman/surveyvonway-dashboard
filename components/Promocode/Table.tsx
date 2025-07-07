@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
 import { deletePromo } from "@/app/lib/promo/actionpromo";
 import Link from "next/link";
 import SearchPromo from "./SearchPromo";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Define the shape of a redemption record
 interface Redemption {
@@ -29,9 +29,23 @@ export default function TablePromo({
   currentPage,
   itemsPerPage,
 }: TablePromoProps) {
-  const [selectedMonth, setSelectedMonth] = useState<string>("");
-  const [selectedYear, setSelectedYear] = useState<string>("");
-  const [selectedEligible, setSelectedEligible] = useState<string>("");
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const selectedMonth = searchParams.get("month") || "";
+  const selectedYear = searchParams.get("year") || "";
+  const selectedEligible = searchParams.get("eligible") || "";
+
+  const updateURLParam = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+    router.push(`?${params.toString()}`);
+  };
 
   // Extract distinct years
   const years: number[] = Array.from(
@@ -79,7 +93,7 @@ export default function TablePromo({
         {/* filter by month */}
         <select
           value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
+          onChange={(e) => updateURLParam("month", e.target.value)}
           className="border px-3 py-2 rounded"
         >
           <option value="">All Months</option>
@@ -92,7 +106,7 @@ export default function TablePromo({
         {/* filter by year */}
         <select
           value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
+          onChange={(e) => updateURLParam("year", e.target.value)}
           className="border px-3 py-2 rounded"
         >
           <option value="">All Years</option>
@@ -105,7 +119,7 @@ export default function TablePromo({
         {/* filter by eligible */}
         <select
           value={selectedEligible}
-          onChange={(e) => setSelectedEligible(e.target.value)}
+          onChange={(e) => updateURLParam("eligible", e.target.value)}
           className="border px-3 py-2 rounded"
         >
           <option value="">All Eligibility</option>
